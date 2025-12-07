@@ -1,31 +1,39 @@
 // Service Worker لمنصة سلمى التعليمية
-const CACHE_NAME = 'salma-platform-v1';
-const urlsToCache = [
+// Updated with better caching strategy for improved performance
+const CACHE_NAME = 'salma-platform-v1.2';
+const STATIC_CACHE = 'salma-static-v1.2';
+const DYNAMIC_CACHE = 'salma-dynamic-v1.2';
+
+// Static assets to cache immediately
+const STATIC_ASSETS = [
   '/',
   '/index.html',
   '/logo.png',
+  '/logo.svg',
+  '/favicon.svg',
   '/manifest.json'
 ];
 
 // تثبيت Service Worker
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
+    caches.open(STATIC_CACHE)
       .then((cache) => {
-        console.log('✅ تم فتح الذاكرة المؤقتة');
-        return cache.addAll(urlsToCache);
+        console.log('✅ تم فتح الذاكرة المؤقتة الثابتة');
+        return cache.addAll(STATIC_ASSETS);
       })
+      .catch(err => console.error('خطأ في تثبيت Service Worker:', err))
   );
   self.skipWaiting();
 });
 
-// تفعيل Service Worker
+// تفعيل Service Worker وحذف الذاكرة المؤقتة القديمة
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
+          if (cacheName !== STATIC_CACHE && cacheName !== DYNAMIC_CACHE) {
             console.log('🗑️ حذف ذاكرة مؤقتة قديمة:', cacheName);
             return caches.delete(cacheName);
           }
@@ -36,34 +44,65 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// التعامل مع الطلبات
+// Network-first strategy for API calls, Cache-first for static assets
 self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request)
-      .then((response) => {
-        // إرجاع الملف من الذاكرة المؤقتة إذا وُجد
-        if (response) {
+  const { request } = event;
+  const url = new URL(request.url);
+
+  // Skip non-GET requests
+  if (request.method !== 'GET') {
+    return;
+  }
+
+  // Network-first for API calls (Supabase)
+  if (url.hostname.includes('supabase')) {
+    event.respondWith(
+      fetch(request)
+        .then(response => {
+          // Clone and cache successful responses
+          if (response && response.status === 200) {
+            const responseClone = response.clone();
+            caches.open(DYNAMIC_CACHE).then(cache => {
+              cache.put(request, responseClone);
+            });
+          }
           return response;
+        })
+        .catch(() => {
+          // Return cached version if network fails
+          return caches.match(request);
+        })
+    );
+    return;
+  }
+
+  // Cache-first for static assets
+  event.respondWith(
+    caches.match(request)
+      .then((cachedResponse) => {
+        if (cachedResponse) {
+          return cachedResponse;
         }
 
-        // محاولة جلب الملف من الشبكة
-        return fetch(event.request).then((response) => {
-          // التحقق من صحة الاستجابة
-          if (!response || response.status !== 200 || response.type !== 'basic') {
+        // Fetch from network and cache
+        return fetch(request).then((response) => {
+          // Don't cache non-successful responses
+          if (!response || response.status !== 200 || response.type === 'opaque') {
             return response;
           }
 
-          // حفظ نسخة في الذاكرة المؤقتة
-          const responseToCache = response.clone();
-          caches.open(CACHE_NAME)
+          const responseClone = response.clone();
+          caches.open(DYNAMIC_CACHE)
             .then((cache) => {
-              cache.put(event.request, responseToCache);
+              cache.put(request, responseClone);
             });
 
           return response;
         }).catch(() => {
-          // إرجاع صفحة offline إذا لم يكن هناك اتصال
-          return caches.match('/index.html');
+          // Return fallback for navigation requests
+          if (request.mode === 'navigate') {
+            return caches.match('/index.html');
+          }
         });
       })
   );

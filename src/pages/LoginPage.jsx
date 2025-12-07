@@ -1,12 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createClient } from '@supabase/supabase-js';
 import Logo from '../components/Logo';
-
-// إعداد Supabase
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || 'https://ydmavbbgtvkygosbyezv.supabase.co';
-const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlkbWF2YmJndHZreWdvc2J5ZXp2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI3OTY5MzgsImV4cCI6MjA3ODM3MjkzOH0.Ri4TmK2Bv7xx3DZl0D0pPK7dOOSM7OkP9FPko_-R3Ys';
-const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+import { supabase } from '../utils/supabaseClient';
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -31,30 +26,30 @@ function LoginPage() {
     }
   }, [navigate]);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = useCallback((e) => {
     const { id, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [id]: value
     }));
-  };
+  }, []);
 
-  const switchTab = (tab) => {
+  const switchTab = useCallback((tab) => {
     setActiveTab(tab);
     setError('');
     setSuccess('');
     setFormData({ username: '', password: '' });
-  };
+  }, []);
 
-  const showError = (message) => {
+  const showError = useCallback((message) => {
     setError(message);
     setSuccess('');
-  };
+  }, []);
 
-  const showSuccess = (message) => {
+  const showSuccess = useCallback((message) => {
     setSuccess(message);
     setError('');
-  };
+  }, []);
 
   const handleLogin = async (e, role) => {
     e.preventDefault();
