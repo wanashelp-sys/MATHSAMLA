@@ -1,4 +1,7 @@
 // File: src/pages/HomePage.jsx
+import { Link } from 'react-router-dom';
+import Logo from '../components/Logo';
+
 function HomePage() {
   return (
     <div className="landing-container">
@@ -7,14 +10,12 @@ function HomePage() {
         {/* رأس الصفحة */}
         <header className="page-header">
           <div className="brand-section">
-            <div className="logo-wrapper">
-              <img src="/logo.png" alt="شعار منصة سلمى التعليمية" style={{width: '100%', height: '100%', objectFit: 'cover'}} />
-            </div>
+            <Logo variant="gradient" size="medium" showText={true} />
           </div>
 
           <nav className="nav-buttons">
-            <a href="login.html" className="nav-link">تسجيل الدخول</a>
-            <a href="register.html" className="nav-link">التسجيل</a>
+            <Link to="/login" className="nav-link">تسجيل الدخول</Link>
+            <Link to="/register" className="nav-link">التسجيل</Link>
           </nav>
         </header>
 

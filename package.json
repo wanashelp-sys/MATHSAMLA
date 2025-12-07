@@ -1,7 +1,8 @@
 {
   "name": "mathsamla",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.2.0",
+  "description": "منصة سلمى التعليمية - منصة تعليمية تفاعلية لتعلم الرياضيات من خلال اللعب والتحديات",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,11 +10,25 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.86.2",
+    "emailjs-com": "^3.2.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.10.1"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.4",
     "vite": "^5.4.11"
-  }
+  },
+  "keywords": [
+    "education",
+    "mathematics",
+    "react",
+    "vite",
+    "supabase",
+    "arabic",
+    "educational-platform"
+  ],
+  "author": "معلمة سلمى",
+  "license": "UNLICENSED"
 }

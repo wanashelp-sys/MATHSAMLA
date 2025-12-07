@@ -1,8 +1,9 @@
 {
-  "name": "منصة سلمى التعليمية",
+  "name": "منصة سلمى التعليمية - تعلّم الرياضيات باللعب",
   "short_name": "منصة سلمى",
-  "description": "منصة تعليمية تفاعلية لتعلّم الرياضيات باللعب",
+  "description": "منصة تعليمية تفاعلية لتعلّم الرياضيات من خلال الألعاب والتحديات التعليمية الممتعة",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#7DBECF",
   "theme_color": "#7DBECF",
@@ -23,6 +24,24 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["education", "kids"],
-  "prefer_related_applications": false
+  "categories": ["education", "kids", "learning"],
+  "prefer_related_applications": false,
+  "screenshots": [],
+  "related_applications": [],
+  "shortcuts": [
+    {
+      "name": "تسجيل الدخول",
+      "short_name": "دخول",
+      "description": "الدخول إلى حسابك",
+      "url": "/login",
+      "icons": [{ "src": "/logo.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "التسجيل",
+      "short_name": "تسجيل",
+      "description": "إنشاء حساب جديد",
+      "url": "/register",
+      "icons": [{ "src": "/logo.png", "sizes": "96x96" }]
+    }
+  ]
 }
