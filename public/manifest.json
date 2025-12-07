@@ -1,0 +1,28 @@
+{
+  "name": "منصة سلمى التعليمية",
+  "short_name": "منصة سلمى",
+  "description": "منصة تعليمية تفاعلية لتعلّم الرياضيات باللعب",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#7DBECF",
+  "theme_color": "#7DBECF",
+  "orientation": "portrait-primary",
+  "dir": "rtl",
+  "lang": "ar",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "kids"],
+  "prefer_related_applications": false
+}
