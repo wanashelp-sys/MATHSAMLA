@@ -8,6 +8,7 @@ const HomePage = lazy(() => import('./pages/HomePage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const StudentDashboard = lazy(() => import('./pages/StudentDashboard'));
+const StudentLessonsPage = lazy(() => import('./pages/StudentLessonsPage'));
 
 // Loading component
 function PageLoader() {
@@ -35,6 +36,7 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/dashboard" element={<StudentDashboard />} />
+            <Route path="/lessons" element={<StudentLessonsPage />} />
           </Routes>
         </Suspense>
       </Router>
