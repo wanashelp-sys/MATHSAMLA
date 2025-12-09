@@ -5,7 +5,7 @@
   "description": "منصة سلمى التعليمية - منصة تعليمية تفاعلية لتعلم الرياضيات من خلال اللعب والتحديات",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 5173 --strictPort",
     "build": "vite build",
     "preview": "vite preview"
   },

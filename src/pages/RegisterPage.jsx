@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '../supabaseClient';
 import emailjs from 'emailjs-com';
 import Logo from '../components/Logo';
 
 // إعداد Supabase
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || 'https://ydmavbbgtvkygosbyezv.supabase.co';
 const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlkbWF2YmJndHZreWdvc2J5ZXp2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI3OTY5MzgsImV4cCI6MjA3ODM3MjkzOH0.Ri4TmK2Bv7xx3DZl0D0pPK7dOOSM7OkP9FPko_-R3Ys';
-const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+// Use 'supabase' from supabaseClient.js
 
 // إعداد EmailJS
 const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_tv0lnvr';
@@ -708,7 +708,7 @@ function RegisterPage() {
                 </button>
               </div>
 
-              <div className="mt-3 text-center" style={{ fontSize: '0.82rem', color: '#64748b' }}>
+              <div className="mt-3 text-center" style={{ fontSize: '0.82rem', color: 'var(--color-primary)' }}>
                 لديكِ حساب مسبقاً؟
                 <a href="/login" className="link-primary"> انتقلي إلى تسجيل الدخول</a>
               </div>
@@ -724,7 +724,7 @@ function RegisterPage() {
             <div className="success-modal-badge">🎉</div>
             <h5 className="fw-bold mb-2">{successData.title}</h5>
             <p style={{ fontSize: '0.9rem', marginBottom: '0.5rem' }}>{successData.text}</p>
-            <p style={{ fontSize: '0.83rem', color: '#475569' }}>{successData.extra}</p>
+            <p style={{ fontSize: '0.83rem', color: 'var(--color-primary)' }}>{successData.extra}</p>
 
             <div className="success-modal-actions">
               <button 

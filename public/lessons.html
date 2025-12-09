@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>صفحة التعلّم | معمل سلمى - الطالبة</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- خط عربي -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <!-- Bootstrap RTL للأدوات الجاهزة فقط -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+
+  <style>
+    /* ... جميع الأنماط كما في كودك ... */
+  </style>
+</head>
+<body>
+
+<div class="sidebar-backdrop"></div>
+
+<div class="dashboard-container">
+  <div class="dashboard-shell">
+    <!-- القائمة الجانبية الجديدة -->
+    <aside class="dashboard-sidebar">
+      <button class="sidebar-close" type="button">✕</button>
+      <nav>
+        <ul class="sidebar-menu">
+          <li class="sidebar-menu-item">
+            <a href="dashboard.html" class="sidebar-menu-link">
+              <span class="sidebar-menu-text">نظرة عامة</span>
+              <span class="sidebar-menu-icon">🏠</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item">
+            <a href="lessons.html" class="sidebar-menu-link active">
+              <span class="sidebar-menu-text">التعلّم والألعاب</span>
+              <span class="sidebar-menu-icon">🎮</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item">
+            <a href="challenges.html" class="sidebar-menu-link">
+              <span class="sidebar-menu-text">لعب جماعي</span>
+              <span class="sidebar-menu-icon">🛡️</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item">
+            <a href="leaderboard.html" class="sidebar-menu-link">
+              <span class="sidebar-menu-text">التواصل</span>
+              <span class="sidebar-menu-icon">💬</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- المحتوى الرئيسي -->
+    <div class="dashboard-main">
+      <div class="dashboard-wrapper">
+        <!-- الهيدر -->
+        <header class="dashboard-header">
+          <div class="brand-section">
+            <button class="sidebar-toggle" type="button">☰</button>
+            <div class="brand-logo">م</div>
+            <div class="brand-info">
+              <div class="brand-title">معمل سلمى - لوحة الطالبة</div>
+              <div class="brand-subtitle">منصة تفاعلية لتعلّم الرياضيات باللعب</div>
+            </div>
+          </div>
+          <div class="user-section">
+            <div class="notification-wrapper">
+              <button class="icon-btn" type="button" id="notifToggle">
+                <span>🔔</span>
+                <span class="notification-badge">3</span>
+              </button>
+              <div class="notification-panel" id="notifPanel">
+                <div class="notification-header">
+                  <div class="notification-title">إشعارات الطالبة</div>
+                  <div class="notification-count">3 إشعارات</div>
+                </div>
+                <ul class="notification-list">
+                  <li class="notification-item">
+                    تم إضافة تمرين جديد في الجمع والطرح.
+                    <div class="notification-meta">
+                      <span class="notification-tag">تمرين جديد</span>
+                      <span>منذ ٥ دقائق</span>
+                    </div>
+                  </li>
+                  <li class="notification-item">
+                    لديك تحدٍّ مجدول يبدأ بعد ساعة.
+                    <div class="notification-meta">
+                      <span class="notification-tag">تحدي قريب</span>
+                      <span>اليوم</span>
+                    </div>
+                  </li>
+                  <li class="notification-item">
+                    ربحتِ 50 نقطة في تحديات الأمس.
+                    <div class="notification-meta">
+                      <span class="notification-tag">مكافأة</span>
+                      <span>أمس</span>
+                    </div>
+                  </li>
+                </ul>
+                <div class="notification-footer">
+                  <a href="notifications.html">عرض جميع الإشعارات ▸</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="user-chip">
+              <div class="user-avatar">أ</div>
+              <div class="user-info">
+                <div class="user-name">الطالبة أسماء</div>
+                <div class="user-role">الصف الخامس - القسم أ</div>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- عنوان الصفحة -->
+        <section class="page-title-section">
+          <h1 class="page-title">
+            <span>📚</span>
+            <span>صفحة التعلّم</span>
+          </h1>
+          <p class="page-subtitle">
+            اختاري الوحدة التي تريدين التقدّم فيها، وابدئي اللعب على دروس الرياضيات للصف الخامس.
+          </p>
+        </section>
+
+        <!-- فلاتر الدروس -->
+        <div class="filters-section">
+          <button class="filter-btn active" onclick="filterLessons('all', this)">الكل</button>
+          <button class="filter-btn" onclick="filterLessons('completed', this)">✓ مكتملة</button>
+          <button class="filter-btn" onclick="filterLessons('in-progress', this)">⏳ جارية</button>
+          <button class="filter-btn" onclick="filterLessons('locked', this)">🔒 مقفلة</button>
+        </div>
+
+        <!-- الوحدات الست -->
+        <section>
+          <div class="row g-3">
+            <!-- ... بطاقات الدروس كما في كودك ... -->
+          </div>
+        </section>
+
+        <div class="footer-note">
+          <span>معمل سلمى</span> – صفحة التعلّم تعرض وحدات الصف الخامس مع نسبة التقدم في كل وحدة فقط، لترك التركيز على اللعب والتحديات.
+        </div>
+
+        <footer class="copy-footer">
+          جميع الحقوق محفوظة لمعمل سلمى © 2025.
+        </footer>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // ... جميع السكريبتات كما في كودك ...
+</script>
+
+</body>
+</html>

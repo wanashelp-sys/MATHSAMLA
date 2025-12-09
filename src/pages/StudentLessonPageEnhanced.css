@@ -1,0 +1,114 @@
+/* StudentLessonPageEnhanced.css - clean version using design-system variables only */
+:root{ --muted-opacity: 0.9; }
+.enhanced-lesson-container, .student-lesson-page { max-width:980px; margin:20px auto; padding:20px; color:var(--color-primary); direction:rtl; }
+.lesson-header{ background:var(--color-bg-card); border-radius:14px; padding:16px; box-shadow:0 10px 26px var(--shadow-weak); margin-bottom:14px; }
+.lesson-breadcrumbs{ font-size:13px; color:var(--color-primary); opacity:0.9; margin-bottom:8px }
+.lesson-title-main{ font-size:20px; color:var(--color-primary); font-weight:800; margin:6px 0 }
+.progress-wrap{ display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap }
+.progress-bar{ flex:1; background:var(--color-bg-page); height:12px; border-radius:999px; overflow:hidden }
+.progress-fill{ height:100%; width:0%; background:var(--color-accent); transition: width 900ms ease }
+.lesson-sections{ display:flex; flex-direction:column; gap:14px }
+.section-row{ background:var(--color-bg-card); border-radius:12px; padding:0; overflow:hidden; box-shadow:0 10px 30px var(--shadow-weak); transition: transform .28s ease, box-shadow .28s ease }
+.section-row:hover{ transform: translateY(-6px); box-shadow:0 22px 60px var(--shadow-medium) }
+.section-header{ display:flex; justify-content:space-between; align-items:center; padding:12px 14px; cursor:pointer }
+.section-icon{ width:48px; height:48px; display:flex; align-items:center; justify-content:center; border-radius:12px; background:var(--color-bg-page); font-size:20px; color:var(--color-primary) }
+.section-title{ font-weight:800; color:var(--color-primary) }
+.section-content{ padding:12px 14px; border-top:1px solid var(--border-weak) }
+.question-card{ padding:12px; border-radius:12px; background:var(--color-bg-page); margin-bottom:12px; box-shadow:0 10px 30px var(--shadow-weak) }
+.choice-btn{ text-align:right; padding:12px 14px; border-radius:12px; background:var(--color-bg-card); border:1px solid var(--border-weak); cursor:pointer }
+.choice-btn.selected{ background:var(--color-accent); color:var(--color-primary) }
+
+@media (max-width:768px){ .enhanced-lesson-container{ padding:12px } .section-icon{ width:40px; height:40px } .lesson-title-main{ font-size:18px } }
+:root {
+  --primary-color: var(--color-accent);
+  --secondary-color: var(--color-primary);
+  --accent-color: var(--color-accent);
+  --text-color: var(--color-primary);
+  --success-color: var(--color-accent);
+  --error-color: var(--color-primary);
+  --warning-color: var(--color-accent);
+
+  /* extra gradients and tokens */
+  --success-gradient: linear-gradient(135deg, var(--color-accent), var(--color-primary));
+  --warning-gradient: linear-gradient(135deg, var(--color-accent), var(--color-primary));
+  --error-gradient: linear-gradient(135deg, var(--color-primary), var(--color-primary));
+  --info-gradient: linear-gradient(135deg, var(--color-primary), var(--color-primary));
+
+  --card-radius: 16px;
+  --card-shadow: 0 12px 40px rgba(2,6,23,0.08);
+  --muted: var(--color-primary);
+  --focus-ring: 0 0 0 4px rgba(124,77,255,0.14);
+
+  --animation-fast: 150ms;
+  --animation-medium: 300ms;
+  --animation-slow: 500ms;
+}
+
+/* Accessibility helpers */
+.high-contrast { --text-color: var(--color-primary); background: var(--color-bg-page) }
+.reduce-motion * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important }
+
+/* Container */
+.enhanced-lesson-container, .student-lesson-page {
+  max-width: 980px;
+  margin: 20px auto;
+  padding: 20px;
+  color: var(--text-color);
+  direction: rtl;
+}
+
+/* Header */
+.lesson-header {
+  background: var(--color-bg-card);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: var(--card-shadow);
+  margin-bottom: 18px;
+}
+.lesson-breadcrumbs { font-size: 13px; color:var(--muted); margin-bottom:8px }
+.lesson-title-main { font-size: 24px; color: var(--primary-color); font-weight:800; margin:6px 0 }
+.lesson-sub { color: rgba(0,0,0,0.7); margin-bottom:12px }
+
+.progress-wrap { display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap }
+.progress-bar { flex:1; background: rgba(2,6,23,0.05); height:12px; border-radius:999px; overflow:hidden; box-shadow: inset 0 -2px 6px rgba(0,0,0,0.04) }
+.progress-fill { height:100%; width:0%; background: var(--accent-color); transition: width 900ms cubic-bezier(.2,.9,.2,1); }
+.progress-text { min-width:140px; text-align:right; color:var(--muted); font-weight:700 }
+
+/* Sections */
+.lesson-sections { display:flex; flex-direction:column; gap:14px }
+.section-row { background: var(--color-bg-page); border-radius: var(--card-radius); padding:0; overflow:hidden; box-shadow: var(--card-shadow); transition: transform var(--animation-medium) ease, box-shadow var(--animation-medium) ease }
+.section-row:hover { transform: translateY(-6px); box-shadow: 0 22px 60px rgba(2,6,23,0.12) }
+.section-header { display:flex; justify-content:space-between; align-items:center; padding:14px 16px; cursor:pointer }
+.section-header.interactive-element:hover { transform: translateY(-3px) }
+.section-meta { display:flex; gap:12px; align-items:center }
+.section-icon { width:48px; height:48px; display:flex; align-items:center; justify-content:center; border-radius:12px; background: var(--color-bg-card); font-size:20px }
+.section-title { font-weight:800; color:var(--primary-color) }
+.section-toggle { color:var(--muted); font-weight:700 }
+.section-content { padding:14px 16px; border-top:1px solid rgba(2,6,23,0.03) }
+
+/* Question card */
+.question-card { padding:14px; border-radius:12px; background: var(--color-bg-card); margin-bottom:12px; box-shadow: 0 10px 30px rgba(2,6,23,0.06) }
+.question-number { font-weight:800; color:var(--muted); margin-bottom:6px }
+.question-text { font-size:16px; color:var(--text-color); margin-bottom:10px; text-align:right }
+.choices { display:flex; flex-direction:column; gap:10px }
+.choice-btn { text-align:right; padding:12px 14px; border-radius:12px; background:var(--color-bg-page); border:1px solid rgba(2,6,23,0.06); cursor:pointer; transition: transform var(--animation-fast) ease, box-shadow var(--animation-fast) }
+.choice-btn.interactive-element:hover { transform: translateY(-4px); box-shadow: 0 12px 34px rgba(2,6,23,0.08) }
+.choice-btn.selected { background: var(--color-bg-card); color:var(--color-bg-page); border-color:transparent }
+.explanation { margin-top:12px; background: var(--color-bg-card); padding:10px; border-radius:8px }
+
+/* Visual feedback classes */
+.celebrating { animation: successGlow 1.8s ease-in-out }
+.learning-opportunity { animation: learningHighlight 1.6s ease-out }
+.attention-needed { animation: subtlePulse 2s infinite }
+
+/* small responsive */
+@media (max-width:768px) {
+  .enhanced-lesson-container { padding:12px }
+  .section-icon { width:40px; height:40px }
+  .lesson-title-main { font-size:20px }
+}
+
+/* keyframes */
+@keyframes subtlePulse { 0%,100%{opacity:1} 50%{opacity:0.85} }
+@keyframes successGlow { 0%{box-shadow:0 0 0 0 rgba(34,197,94,0.7)} 70%{box-shadow:0 0 0 10px rgba(34,197,94,0)} 100%{box-shadow:0 0 0 0 rgba(34,197,94,0)} }
+@keyframes learningHighlight { 0%{background-color: rgba(59,130,246,0.06)} 100%{background-color: transparent} }

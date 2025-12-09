@@ -1,8 +1,8 @@
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from './supabaseClient';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-const supa = createClient(supabaseUrl, supabaseAnonKey);
+// Use 'supabase' from supabaseClient.js
 
 // تحويل الأرقام الإنجليزية إلى عربية
 function toArabicNumbers(str) {
@@ -226,7 +226,7 @@ function showError(msg) {
   // عرض رسالة خطأ لطيفة في الصفحة
   const wrapper = document.querySelector('.dashboard-wrapper');
   if (wrapper) {
-    wrapper.innerHTML = `<div style="text-align:center;padding:40px 0;font-size:18px;color:#92400e;">${msg}</div>`;
+    wrapper.innerHTML = `<div style="text-align:center;padding:40px 0;font-size:18px;color:var(--color-primary);">${msg}</div>`;
   }
 }
 
